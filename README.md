@@ -9,6 +9,6 @@ mongoimport -d blog -c posts < posts.json
 ````
 
 
-## License
+### License
 
 Released under the MIT License
