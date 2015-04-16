@@ -65,9 +65,53 @@ mongoimport -d test -c grades --drop grades.json
 ### Response
 
 ````
-
+db.grades.aggregate([
+    {
+        $unwind: '$scores'
+    },
+    {
+        $match: {
+            'scores.type': { $in: ['exam', 'homework'] }
+        }
+    },
+    {
+        $group: {
+            _id: {
+                class_id: '$class_id',
+                student_id: '$student_id'
+            },
+            scoresAvg: { $avg: '$scores.score' }
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            student_id: '$_id.student_id',
+            class_id: '$_id.class_id',
+            scoresAvg: 1
+        }
+    },
+    {
+        $group: {
+            _id: {
+                class_id: '$class_id'
+            },
+            avg: {
+                $avg: '$scoresAvg'
+            }
+        }
+    },
+    {
+        $sort: {
+            'avg': -1
+        }
+    },
+    {
+        $limit: 1
+    }
+])
 ````
 
-*
+* 1
 
 
