@@ -12,6 +12,15 @@ Once you've found the correct answer with your query, please choose your answer 
 Note: this data set is relatively large. Due to some quirks of the shell, the entire result set gets pulled into the browser on find(), so if you want to see the document schema, we recommend either using db.posts.findOne(), db.posts.find().limit(1), or that you plan on waiting for a bit after you hit enter. We also recommend that the last phase of your aggregation pipeline is {$limit: 1} (or some single digit number)
 
 
+* Kayce Kenyon
+* Devorah Smartt
+* Gisela Levin
+* Brittny Warwick
+* Tamika Schildgen
+* Mariette Batdorf
+
+### Response
+
 ````
 db.posts.aggregate([
     {
@@ -30,5 +39,9 @@ db.posts.aggregate([
     }
 ])
 ````
+
+* Gisela Levin
+
+
 
 
